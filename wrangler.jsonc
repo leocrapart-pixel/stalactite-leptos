@@ -1,0 +1,14 @@
+{
+  // The Dioxus build is a static site: `cargo build --release` plus
+  // `wasm-bindgen` emit a shell and a wasm module, and this Worker's only job is
+  // to serve them.
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "stalactite-leptos",
+  "compatibility_date": "2025-01-01",
+  "assets": {
+    "directory": "./dist",
+    // The app is client-rendered, so unknown paths return the shell rather than
+    // a bare 404.
+    "not_found_handling": "single-page-application"
+  }
+}

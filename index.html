@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Stalactite — the physics of cave growth</title>
+		<meta
+			name="description"
+			content="A physically grounded simulation of stalactite growth: a Nusselt water film, CO2 degassing, and calcite deposition solved from the calcium budget. Built with Leptos and Rust."
+		/>
+		<link rel="icon" href="data:," />
+		<style>
+			/* The component tree paints its own background; this only covers the
+			   gap before the wasm module finishes instantiating. */
+			html,
+			body {
+				margin: 0;
+				background: #05070a;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="main"></div>
+		<script type="module">
+			import init, { start } from './stalactite.js';
+			init()
+				.then(start)
+				.catch((error) => {
+					document.body.innerHTML =
+						'<pre style="color:#e0805a;font:12px ui-monospace,monospace;padding:16px">' +
+						String(error && error.stack ? error.stack : error) +
+						'</pre>';
+				});
+		</script>
+	</body>
+</html>

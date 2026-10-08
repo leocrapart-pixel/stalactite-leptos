@@ -1,0 +1,6 @@
+# Rust build output is large (a Dioxus + web-sys target tree runs to a gigabyte or
+# more). The workspace on /data is capped, so the target directory is pinned to
+# /tmp and only the source lives here. Override with CARGO_TARGET_DIR to put the
+# artefacts alongside the source instead.
+[build]
+target-dir = "/tmp/lx-target"

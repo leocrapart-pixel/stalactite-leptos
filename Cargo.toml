@@ -1,0 +1,45 @@
+[package]
+name = "stalactite-leptos"
+version = "1.0.0"
+edition = "2021"
+description = "Stalactite growth simulation — Leptos port of the Elm app"
+
+[lib]
+# `rlib` as well as `cdylib` so the parity tests can link the library; measured
+# cost of doing so is about 6 kB gzipped of dead code in the wasm module.
+crate-type = ["cdylib"]
+path = "src/lib.rs"
+
+[dependencies]
+leptos = { version = "0.8", features = ["csr"] }
+wasm-bindgen = "0.2"
+js-sys = "0.3"
+web-sys = { version = "0.3", features = [
+    "Window",
+    "Document",
+    "Element",
+    "HtmlElement",
+    "Node",
+    "NodeList",
+    "HtmlCanvasElement",
+    "CanvasRenderingContext2d",
+    "CanvasGradient",
+    "DomRect",
+    "CssStyleDeclaration",
+    "Location",
+    "History",
+    "UrlSearchParams",
+    "KeyboardEvent",
+    "MouseEvent",
+    "Event",
+    "EventTarget",
+    "ResizeObserver",
+    "ResizeObserverEntry",
+    "console",
+] }
+
+[profile.release]
+opt-level = "z"
+lto = true
+codegen-units = 1
+panic = "abort"
